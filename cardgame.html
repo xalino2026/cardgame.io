@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <title>CARD GAME</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+   
+    <style>
+        body {
+            background-image: url("Background\ +\ Creature.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        img{
+            width: 150px;
+            height: 170px;
+        }
+        #a{
+            height: 110px;
+            width: 110px;
+        }
+        button{
+            height: 200px;
+        }
+        #bar{
+            width:50%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            color: white;
+        }
+        #progress{
+            width: 50%;
+            height: 20px;
+            background-color: green;
+
+        }
+        #bar1{
+            width:50%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            color: white;
+        }
+        #progress1{
+            width: 50%;
+            height: 20px;
+            background-color: rgb(255, 174, 0);
+        }
+        #ubar{
+            width:25%;
+            text-align: start;
+            color: white;   
+        }
+        #uprogress{
+            width: 50%;
+            height: 20px;
+            background-color: green;
+        }
+        #ubar1{
+            width:25%;
+            text-align: start;
+            color: white;   
+        }
+        #uprogress1{
+            width: 50%;
+            height: 20px;
+            background-color: green;
+        }
+        #enemy{
+            margin-left: 750px;
+            margin-bottom: 50px;
+        }
+        
+    </style>
+    <script>
+
+        //variables
+
+        var turn = 0;
+        var firetimer = 0;
+        var summon = 0;
+        var ehp = 50;
+        var uhp = 50;
+        var eprot = 50;
+        var uprot = 50;
+        var nxtcard = 0;
+        var one = 1;
+        var zero = 0;
+        var five = 5;
+        var ten = 10;
+        var fifteen = 15;
+        var twenty = 20;
+        var twentyfive = 25;
+
+        //win or lose condition
+
+        function declare(){
+        if (uhp > 0) {
+
+        }
+        else{
+            alert('You lose!');
+            location.replace('lose.html');
+        }
+
+        if (ehp > 0) {
+
+        }
+        else{
+            alert('You win!');
+            location.replace('win.html')
+            
+        }
+    }
+
+        function disablecard(){
+            let uatk = Math.floor((Math.random()*5)+1);
+            var a = document.getElementById("frz");
+            var b = document.getElementById("ptch");
+            var c = document.getElementById("shttr");
+            var d = document.getElementById("strk");
+            var e = document.getElementById("frbll");
+
+            if(uatk == 1){
+                a.disabled = true;
+                b.disabled = true;
+                c.disabled = true;
+                d.disabled = false;
+                e.disabled = false;
+            }
+            else if(uatk == 2){
+                a.disabled = false;
+                b.disabled = true;
+                c.disabled = false;
+                d.disabled = true;
+                e.disabled = true;
+            }
+            else if(uatk == 3){
+                a.disabled = true;
+                b.disabled = false;
+                c.disabled = true;
+                d.disabled = true;
+                e.disabled = false;
+            }
+            else if(uatk == 4){
+                a.disabled = false;
+                b.disabled = false;
+                c.disabled = true;
+                d.disabled = true;
+                e.disabled = true;
+            }
+            else{
+                a.disabled = true;
+                b.disabled = false;
+                c.disabled = true;
+                d.disabled = true;
+                e.disabled = false;
+            }
+        }
+
+        function fireball() {
+            alert("You used fireball!");
+            firetimer = firetimer + five;
+            document.getElementById("progress").value =
+            ehp = ehp - five;
+            if (sumn == 1) {
+                sumn = zero;
+                firetimer = zero;
+            }
+            else {
+
+            }
+            if (firetimer == 5) {
+                document.getElementById("progress").value = 
+                ehp = ehp - five;
+                firetimer = firetimer - one;
+            }
+            else if(firetimer == 4){
+                document.getElementById("progress").value =
+                ehp = ehp-five;
+                firetimer = firetimer - one;
+            }
+            else if(firetimer == 3){
+                document.getElementById("progress").value =
+                ehp = ehp - five;
+                firetimer = firetimer - one;
+            }
+            else if(firetimer == 2){
+                document.getElementById("progress").value =
+                ehp = ehp - five;
+                firetimer = firetimer - one;
+            }
+            else if(firetimer == 1){
+                document.getElementById("progress").value =
+                ehp = ehp - five;
+                firetimer = firetimer - one;
+            }
+            else{
+                document.getElementById("progress").value = 
+                ehp = ehp - five;
+                firetimer = zero;
+            }
+
+            disablecard()
+            eattack()
+            declare()
+
+
+            turn = one;
+        }
+        
+
+        function freeze() {
+            alert("You froze the enemy!");
+            if (sumn == 1) {
+                document.getElementById("uprogress").value =
+                uhp = uhp + five;
+                firetimer = firetimer - one;
+            }
+            else {
+                
+            }
+            if (firetimer > 0) {
+                document.getElementById("progress").value =
+                ehp = ehp - five;
+                firetimer = firetimer - one;
+            }
+            else {
+
+            }
+            disablecard()
+            eattack()
+            declare()
+        }
+
+        function patch() {
+            alert("You used patch! Additional 10 hp will be added to your current hp!");
+            document.getElementById("uprogress").value =
+            uhp = uhp + ten;
+            if (sumn == 1) {
+                sumn = zero;
+                firetimer = zero;
+            }
+            else {
+
+            }
+            if (firetimer > 0) {
+                ehp = ehp - five;
+                firetimer = firetimer - one;
+            }
+            else {
+
+            }
+            disablecard()
+            eattack()
+            declare()
+
+            turn = zero;
+        }
+
+        function shatter() {
+            alert("You shattered the enemey's armor!")
+            document.getElementById("progress1").value=
+            eprot = zero;
+            if (sumn == 1) {
+                sumn = zero;
+                firetimer = zero;
+            }
+            else {
+
+            }
+            if (firetimer > 0) {
+                ehp = ehp - five;
+                firetimer = firetimer - one;
+            }
+            else {
+
+            }
+            disablecard()
+            eattack()
+            declare()
+
+            turn = one;
+        }
+
+        function strike() {
+            alert("You striked the enemy!");
+            if (eprot > 0 ) {
+                document.getElementById("progress1").value =
+                eprot = eprot - ten;
+            }
+            else if(eprot == 0){
+                document.getElementById("progress").value = 
+                ehp = ehp - ten;
+            }
+            if (sumn = 1, firetimer > 0) {
+                sumn = zero;
+                firetimer = zero;
+            }
+            else {
+
+            }
+            if (firetimer > 0) {
+                document.getElementById("progress").value =
+                ehp = ehp - fifteen;
+                firetimer = firetimer - one;
+            }
+            else {
+
+            }
+            disablecard()
+            eattack()
+            declare()
+
+            turn = one;
+        }
+
+        if (ehp > 0) {
+        setTimeout(turncode, 3)
+        } 
+        else {
+        }
+
+        function turncode() {
+            var x='';
+        if (turn == 0) {
+            x;
+        }
+        else {
+
+        }
+    }
+
+        function eattack() {
+            let eatk = Math.floor((Math.random()*5)+1);
+
+            if (eatk == 1) {
+                estrike();
+            }
+            else if (eatk == 2) {
+                eshatter();
+            }
+            else if (eatk == 3) {
+                sumn();
+            }
+            else if (eatk == 4) {
+                cast();
+            }
+            else {
+                eheal();
+            }
+            turn = one;
+        }
+
+        function estrike() {
+            alert("The enemy struck you!");
+            if (uprot > 0) {
+                document.getElementById("uprogress1").value =
+                uprot = uprot - ten;
+            }
+            else {
+                document.getElementById("uprogress").value =
+                uhp = uhp - ten;
+            }
+            declare()
+        }
+
+        function eshatter() {
+            alert("The enemy shattered your armor!");
+            document.getElementById("uprogress1").value =
+            uprot = zero;
+            declare()
+        }
+
+        function sumn() {
+            alert("The enemy has summoned some help!");
+            summon = one;
+            if(summon == one){
+                document.getElementById("uprogress").value =
+                uhp = uhp - five;
+            }
+            else if(summon == one){
+                firetimer = 0;
+            }
+            else if(uatk == fireball()){
+                summon = 0;
+            }
+            else{
+                
+            }
+            declare()
+        }
+
+        function cast() {
+            alert("The enemy has casted dark magic on you!");
+            document.getElementById("uprogress").value =
+            ehp = ehp - five;
+            document.getElementById("progress1").value=
+            eprot = eprot + ten;
+            declare()
+        }
+
+        function eheal() {
+            alert("The enemy has healed themselves");
+            document.getElementById("progress").value =
+            ehp = ehp + ten;
+            declare()
+        }
+        
+    </script>
+</head>
+<body>
+    <p></p>
+    <div id="uhpdisplay">
+
+    </div>
+    <div id="uarmordisplay">
+
+    </div>
+    <div id="ehpdisplay">
+
+    </div>
+    <div id="earmordisplay">
+
+    </div>
+    <div class="col-sm-4">
+        <a href="index.html"><img id="a" src="return1.png" alt="return"></a>
+    </div>
+    <div id="enemy">
+    <div id="bar">
+        <p class="text-dark fw-bold fs-5">Enemy's Health:<progress id="progress" value="50" max="50"></progress></p>
+    </div>
+    <div>
+    </div>
+    <div id="bar1">
+        <p class="text-dark fw-bold fs-5">Enemy's Armor:<progress id="progress1" value="50" max="50"></progress></p>
+    </div>
+    </div>
+    <div>
+        <div>
+            <div id="ubar">
+                <p class="text-dark fw-bold fs-5">Player's Health:<progress id="uprogress" value="50" max="50"></progress></p>
+            </div>
+            <div id="ubar1">
+                <p class="text-dark fw-bold fs-5">Player's Armor:<progress id="uprogress1" value="50" max="50"></progress></p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                 <button id="frbll" onclick="fireball()"><img src="fireball.png" alt="fireball">FIREBALL</button>
+            </div>
+            <div class="col">
+                <button id="frz" onclick="freeze()"><img src="freeze.png" alt="freeze">FREEZE</button>
+            </div>
+            <div class="col">
+                <button id="ptch" onclick="patch()"><img src="patch.png" alt="patch">PATCH</button>
+            </div>
+            <div class="col">
+                <button id="shttr" onclick="shatter()"><img src="shatter.png" alt="shatter">SHATTER</button>
+            </div>
+            <div class="col">
+                <button id="strk" onclick="strike()"><img src="strike.png" alt="strike">STRIKE</button>
+            </div>
+            <div>
+                <a href="win.html" id="win"></a>
+                <a href="lose.html" id="lose"></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
